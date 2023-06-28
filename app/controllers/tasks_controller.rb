@@ -28,6 +28,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       # turbo stream here notice: "Task was successfully created."
+      render turbo_stream: turbo_stream.prepend("tasks", partial: 'tasks/task', locals: {task: @task})
     else
       render :new, status: :unprocessable_entity
       render @task.errors, status: :unprocessable_entity
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-      redirect_to task_url(@task), notice: "Task was successfully updated."
+      render turbo_stream: turbo_stream.prepend("tasks", partial: 'tasks/task', locals: {task: @task})
     else
       render :edit, status: :unprocessable_entity
       render @task.errors, status: :unprocessable_entity
@@ -47,6 +48,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
+    # I dont really want a redirect here !! stream
       redirect_to tasks_url, notice: "Task was successfully destroyed."
   end
 

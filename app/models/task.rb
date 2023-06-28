@@ -1,4 +1,7 @@
 class Task < ApplicationRecord
   has_one :user
-  has_secure_password
+  
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :status, presence: true
 end
