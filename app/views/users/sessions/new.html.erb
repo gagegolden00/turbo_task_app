@@ -1,29 +1,34 @@
-<div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-  <h2 class="text-3xl font-bold text-center mb-6">Sign in</h2>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
-    <div>
-      <%= f.label :email, class: "text-gray-700 text-sm font-semibold" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
-    </div>
+<%= turbo_frame_tag 'modal' do %>
+  <div data-controller="stimmodal" class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-bold text-center mb-6">Sign in</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <div>
+        <%= f.label :email, class: "text-gray-700 text-sm font-semibold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+      </div>
 
-    <div>
-      <%= f.label :password, class: "text-gray-700 text-sm font-semibold" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
-    </div>
+      <div>
+        <%= f.label :password, class: "text-gray-700 text-sm font-semibold" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+      </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="flex items-center">
-        <%= f.check_box :remember_me, class: "form-checkbox text-indigo-500" %>
-        <span class="text-gray-700 text-sm ml-2">Remember me</span>
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center">
+          <%= f.check_box :remember_me, class: "form-checkbox text-indigo-500" %>
+          <span class="text-gray-700 text-sm ml-2">Remember me</span>
+        </div>
+      <% end %>
+      <div>
+        <div class="justify-center">
+          <%= f.submit "Log in", data: {turbo_frame: "_top", action: 'redirect_to tasks_url'},  class: "bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" %>
+        </div>
+        <div>
+          <%= link_to "Cancel", "#", data: {turbo_frame: "_top", action: "click->stimmodal#removeModal" }%>
+        </div>
       </div>
     <% end %>
 
-    <div class="justify-center">
-      <%= f.submit "Log in",  class: "bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" %>
+    <div class="mt-4 text-sm text-center">
     </div>
-  <% end %>
-
-  <div class="mt-4 text-sm text-center">
   </div>
-</div>
-
+<% end %>
