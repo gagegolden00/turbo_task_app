@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-
   static targets =["modal"]
   connect() {
     console.log("Connected to modal controller")
@@ -12,6 +11,6 @@ export default class extends Controller {
   removeModal(event) {
     console.log("removeModal function triggered ")
     event.preventDefault();
-    this.element.closest("turbo-frame").remove();
+    this.element.closest("div").remove();
   }
 }

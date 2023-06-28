@@ -77,3 +77,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "pry", "~> 0.14.2"
+
+gem "pagy", "~> 6.0"
+
+gem "pundit", "~> 2.3"

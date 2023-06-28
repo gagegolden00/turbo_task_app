@@ -38,7 +38,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-      render turbo_stream: turbo_stream.prepend("tasks", partial: 'tasks/task', locals: {task: @task})
+      render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: {task: @task})
     else
       render :edit, status: :unprocessable_entity
       render @task.errors, status: :unprocessable_entity

@@ -28,7 +28,7 @@
             <%= f.submit "Sign up", class: "bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" %>
           </div>
           <div>
-            <%= link_to "Cancel", "#", data: {turbo_frame: "_top", action: "click->stimmodal#removeModal" }%>
+            <%= link_to "Cancel", "#", data: {action: "click->stimmodal#removeModal" }%>
           </div>
         </div>
       <% end %>
