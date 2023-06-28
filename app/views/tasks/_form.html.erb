@@ -1,32 +1,51 @@
+
+
 <%= form_with(model: task, class: "contents") do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+  <div data-controller="taskhandler" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
+    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-8">
+      <% if task.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+          <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+          <ul>
+            <% task.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+      <div class="font-bold">
+        <% if form_type_needed == "new" %>
+          <h1>Create New Task</h1>
+        <% elsif form_type_needed == "edit" %>
+          <h1>Edit This Task</h1>
         <% end %>
-      </ul>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :description %>
+        <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :status %>
+        <%= form.select :status, options_for_select(["In Progress", "Completed"], task.status), class: "block mt-2 border-gray-300 rounded-md p-2" %>
+      </div>
+
+
+      <div class="inline-flex justify-end">
+        <%= form.submit "Submit", class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium cursor-pointer" %>
+      </div>
+
+      <div>
+        <%= link_to "Cancel", "#", data: {turbo_frame: "_top", action: "click->taskhandler#removeModal"} %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.check_box :status, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
+

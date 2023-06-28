@@ -7,8 +7,7 @@
     <div class="flex space-x-4">
       <% if user_signed_in? %>
         <%= link_to 'LOGOUT', destroy_user_session_url, data: { turbo_method: :delete }, class: "text-white hover:text-gray-300" %>
-        <%= link_to 'NEW TASK', new_task_url, class: "text-white hover:text-gray-300" %>
-        <%= link_to 'TASK INDEX', tasks_url, class: "text-white hover:text-gray-300" %>
+        <%= link_to 'VIEW MY TASKS', tasks_url, class: "text-white hover:text-gray-300" %>
       <% else %>
         <%= link_to 'SIGN UP', new_user_registration_path, data: {turbo_frame: 'modal'}, class: "text-white hover:text-gray-300" %>
         <%= link_to 'SIGN IN', new_user_session_path, data: {turbo_frame: 'modal'}, class: "text-white hover:text-gray-300" %>

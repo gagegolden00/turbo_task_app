@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to task_url(@task), notice: "Task was successfully created."
+      # turbo stream here notice: "Task was successfully created."
     else
       render :new, status: :unprocessable_entity
       render @task.errors, status: :unprocessable_entity

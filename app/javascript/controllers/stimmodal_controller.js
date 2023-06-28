@@ -9,18 +9,6 @@ export default class extends Controller {
 
   }
 
-  /*
-
-  this will be used in a different controller not for creating users or logging in
-    its more for removing the form for creating tasks
-
-  submitEnd(event){
-    if(event.detail.success){
-      this.removeModal()
-    }
-  }
-  */
-
   removeModal(event) {
     console.log("removeModal function triggered ")
     event.preventDefault();
