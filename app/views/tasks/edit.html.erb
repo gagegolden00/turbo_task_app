@@ -1,7 +1,5 @@
 <%= turbo_frame_tag 'form' do %>
   <div data-controller="taskhandler" data-action="turbo:submit-end->taskhandler#submitEnd" class="mx-auto md:w-2/3 w-full">
-
     <%= render partial: "form", locals: { task: @task, form_type_needed: "edit" } %>
-
   </div>
 <% end %>

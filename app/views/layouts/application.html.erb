@@ -11,9 +11,11 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <nav>
+    <%= render 'shared/nav' %>
+  </nav>
 
   <body>
-  <%= render 'shared/nav' %>
   <div data-controller="messagehandler" >
     <p class="notice" id="notice"><%= notice %></p>
     <p class="alert" id="alert"><%= alert %></p>
